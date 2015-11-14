@@ -5,6 +5,22 @@ Template.mainTemplate.helpers({
   },
 
   haikus: function () {
-    return Haikus.find({});
+    var haikus = Haikus.find({}).fetch();
+    var aHaikus = [];
+    // for (var i = 0; haikus.length(); i++) {
+      // var title = haikus[i].title;
+      // var _id = haikus[i]._id;
+      // aHaikus[i] = {
+      //   title: title,
+      //   _id: _id
+      // };
+    // }
+        console.log(haikus);
+    // return aHaikus;
+    return haikus;
+    // console.log(haikus);
+    // return haikus;
   }
+
+
 });
