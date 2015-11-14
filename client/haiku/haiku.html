@@ -1,3 +1,25 @@
+<head>
+  <title>Haikus</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>New haikus yo</h1>
+    </header>
+ 
+    <ul>
+      {{#each haikus}}
+        {{> haiku}}
+      {{/each}}
+    </ul>
+  </div>
+ </body>
+ 
 <template name="haiku">
-  <h1>Haiku</h1>
+
+
+  <li>{{line_1}}</li>
+  <li>{{line_2}}</li>
+  <li>{{line_3}}</li>
 </template>
