@@ -19,4 +19,7 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 iron:router
+<<<<<<< HEAD
 accounts-facebook
+=======
+>>>>>>> 4accc7d6616f234c6ebc695e07f743d78f53ce71
