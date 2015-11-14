@@ -1,7 +1,9 @@
+var username;
+
 Template.exampleTemplate.helpers({
     'getName': function () {
-        var userName = "Dan";
-        return userName;
+        username = Meteor.user().profile.name;
+        return username;
     }
 });
 
@@ -12,14 +14,11 @@ Template.login.events({
                 throw new Meteor.Error("Facebook login failed");
             }
         });
-        //TODO
-        //var usrName = Meteor.user().username;
 
 
+        console.log(username);
 
-        var usrName = "Example 777";
-
-        var usrId = UserList.insert({'name': usrName});
+        var usrId = UserList.insert({'name': username});
         Session.set('thisUser', usrId);
         console.log(usrId);
 
