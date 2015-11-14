@@ -1,38 +1,15 @@
-
-<head>
-    <title>haikuthon</title>
-</head>
-
-<body>
-
-
-</body>
-
 <template name="login">
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '789309501195621',
-            xfbml      : true,
-            version    : 'v2.5'
-        });
-    };
+    {{#if currentUser}}
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}} -
+        {{currentUser.services.facebook.email}}
+        {{> exampleTemplate}}
+        <button id="logout">Logout</button>
+    {{else}}
+        <button id="facebook-login" class="btn btn-default"> Login with Facebook</button>
+    {{/if}}
 
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<h1>Welcome to Meteor!</h1>
-
-<div
-        class="fb-like"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true">
-</div>
+</template>
+<template name="exampleTemplate">
+    <li>Your username: {{getName}}</li>
 </template>
