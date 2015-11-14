@@ -1,13 +1,15 @@
-<head>
-    <title>haikuthon</title>
-</head>
-
 <template name="login">
-<h1>Welcome to Haikuthon!</h1>
-<div
-        class="fb-like"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true">
-</div>
+    {{#if currentUser}}
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}} -
+        {{currentUser.services.facebook.email}}
+        {{> exampleTemplate}}
+        <button id="logout">Logout</button>
+    {{else}}
+        <button id="facebook-login" class="btn btn-default"> Login with Facebook</button>
+    {{/if}}
+
+</template>
+<template name="exampleTemplate">
+    <li>Your username: {{getName}}</li>
 </template>

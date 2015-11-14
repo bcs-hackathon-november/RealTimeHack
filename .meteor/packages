@@ -21,4 +21,5 @@ insecure                # Allow all DB writes from clients (for prototyping)
 fezvrasta:bootstrap-material-design
 iron:router
 accounts-facebook
+service-configuration
 aldeed:autoform
