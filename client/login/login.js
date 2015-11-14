@@ -1,15 +1,39 @@
-window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '789309501195621',
-            xfbml      : true,
-            version    : 'v2.5'
-        });
-};
+Template.exampleTemplate.helpers({
+    'getName': function () {
+        var userName = "Dan";
+        return userName;
+    }
+});
 
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+Template.login.events({
+    'click #facebook-login': function (event) {
+        Meteor.loginWithFacebook({}, function (err) {
+            if (err) {
+                throw new Meteor.Error("Facebook login failed");
+            }
+        });
+        //TODO
+        //var usrName = Meteor.user().username;
+
+
+
+        var usrName = "Example 777";
+
+        var usrId = UserList.insert({'name': usrName});
+        Session.set('thisUser', usrId);
+        console.log(usrId);
+
+    },
+
+    'click #logout': function (event) {
+        Meteor.logout(function (err) {
+            if (err) {
+                throw new Meteor.Error("Logout failed");
+            }
+        });
+        //TODO
+        var usrToRm = Session.get('thisUser');
+        console.log(usrToRm);
+        UserList.remove(usrToRm);
+    }
+});
