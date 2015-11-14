@@ -10,12 +10,8 @@
 // }
 
 
-
-if (Meteor.isClient) {
-  // This code only runs on the client
-  Template.body.helpers({
-    haikus: function () {
-      return Haikus.find({});
-    }
-  });
-}
+Template.haikuTemplate.helpers({
+	haikus: function () {
+	  return Haikus.find({});
+	}
+});
