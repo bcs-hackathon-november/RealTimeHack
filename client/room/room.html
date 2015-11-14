@@ -1,5 +1,16 @@
 <template name="room">
   <h1> Room </h1>
-  <h2> Title </h2>
-  
+  <h2> Haiku Title </h2>
+  <p> Line 1 </p>
+  <p> Line 2 </p>
+  <p> Line 3 </p>
+  	{{#autoForm id="demo" schema=schema}}
+  	{{> afQuickFields name="input"}}
+  	<div>
+    	<button type="submit">Submit</button>
+  	</div>
+	{{/autoForm}}
+  <h2> Users </h2>
+  <button> Save </button>
+  <button id='back'><a href="/"> Back </a></button>
 </template>
