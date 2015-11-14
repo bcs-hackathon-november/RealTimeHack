@@ -1,3 +1,23 @@
-<template name="main">
-  
-</template>
+<template name="mainTemplate">
+    <h1> Rooms </h1>
+    <ul>
+      {{#each rooms}}
+        {{> roomTitle}}
+      {{/each}}
+  </ul>
+
+    <h2> Haikus </h2>
+    <ul>
+      {{#each haikus}}
+        {{> haikuTitle}}
+      {{/each}}
+    </ul>
+  </template>
+
+  <template name="roomTitle">
+    <li>{{title}}</li>
+  </template>
+
+  <template name="haikuTitle">
+    <li>{{title}}</li>
+  </template>
