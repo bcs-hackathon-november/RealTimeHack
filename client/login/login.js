@@ -1,7 +1,7 @@
 Template.exampleTemplate.helpers({
     'getName': function () {
-        var userName = "Dan";
-        return userName;
+        var userId = Session.get('thisUser');
+        return Meteor.user().profile.name;
     }
 });
 
@@ -17,11 +17,13 @@ Template.login.events({
 
 
 
-        var usrName = "Example 777";
+        var usrName = Meteor.user().profile.name;
+
+        console.log(usrName);
 
         var usrId = UserList.insert({'name': usrName});
         Session.set('thisUser', usrId);
-        console.log(usrId);
+        //console.log(usrId);
 
     },
 
@@ -33,7 +35,7 @@ Template.login.events({
         });
         //TODO
         var usrToRm = Session.get('thisUser');
-        console.log(usrToRm);
+        //console.log(usrToRm);
         UserList.remove(usrToRm);
     }
 });
