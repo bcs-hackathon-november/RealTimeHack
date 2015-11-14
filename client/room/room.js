@@ -1,31 +1,22 @@
-Session.set("roomTitle", "Title");
-Session.set("roomLine1", "Line 1");
-Session.set("roomLine2", "Line 2");
-Session.set("roomLine3", "Line 3");
-
-Session.set("roomLine1count", 0);
-Session.set("roomLine2count", 0);
-Session.set("roomLine3count", 0);
-
 Template.room.helpers({
-  'rooms': function () {
-    return Rooms.find({});
+  'room': function () {
+    return Rooms.findOne({title: "Room 1"});
   },
 
   'title' : function() {
-  	return Session.get("roomTitle");
+  	return Rooms.findOne({title: "Room 1"}).haiku.title;
   },
 
   'line_1': function(){
-  	return Session.get("roomLine1");
+  	return Rooms.findOne({title: "Room 1"}).haiku.line_1;
   },
 
   'line_2': function(){
-  	return Session.get("roomLine2");
+  	return Rooms.findOne({title: "Room 1"}).haiku.line_2;
   },
 
   'line_3': function(){
-  	return Session.get("roomLine3");
+  	return Rooms.findOne({title: "Room 1"}).haiku.line_3;
   },
 
   'users': function(){
@@ -37,10 +28,10 @@ Template.room.events({
   'click #save' : function(){
   	alert("Saved!");
   	Haikus.insert({
-  		title: Session.get("roomTitle"), 
-  		line_1: Session.get("roomLine1"), 
-  		line_2: Session.get("roomLine2"), 
-  		line_3: Session.get("roomLine3"), 
+  		title: Rooms.findOne({title: "Room 1"}).haiku.title, 
+  		line_1: Rooms.findOne({title: "Room 1"}).haiku.line_1, 
+  		line_2: Rooms.findOne({title: "Room 1"}).haiku.line_2, 
+  		line_3: Rooms.findOne({title: "Room 1"}).haiku.line_3, 
   		created_at: new Date()});
   	Router.go('/');
   },
@@ -53,20 +44,31 @@ Template.room.events({
   		alert("Only one word please");
   		return;
   	}
-  	var curLine;
-  	if (Session.get("roomLine1count") < 5)
-  		curLine = "roomLine1";
-  	else if (Session.get("roomLine2count") < 7)
-  		curLine = "roomLine2";
-  	else if (Session.get("roomLine3count") < 5)
-  		curLine = "roomLine3";
-  	else
-  		return;
 
-  	var tempText = Session.get(curLine);
-  	Session.set(curLine, tempText + " " + inpText);
-  	var count = Session.get(curLine + "count");
-  	count++;
-  	Session.set(curLine + "count", count);
+  	var docId = Rooms.findOne({title: "Room 1"})._id;
+  	var tempText = "";
+  	var count = 0;
+
+  	if (Rooms.findOne({title: "Room 1"}).haiku.line_1_counter < 5) {
+  		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_1;
+  		Rooms.update({_id: docId}, {$set: { line_1 : tempText + " " + inpText}});
+  		count = Rooms.findOne({title: "Room 1"}).haiku.line_1_counter;
+  		count++;
+  		Rooms.update({_id: docId}, {$set: {line_1_counter: count}});
+  	} else if (Rooms.findOne({title: "Room 1"}).haiku.line_2_counter < 7) {
+  		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_2;
+  		Rooms.update({_id: docId}, {$set: { line_2 : tempText + " " + inpText}});
+  		count = Rooms.findOne({title: "Room 1"}).haiku.line_2_counter;
+  		count++;
+  		Rooms.update({_id: docId}, {$set: {line_1_counter: count}});
+  	} else if (Rooms.findOne({title: "Room 1"}).haiku.line_3_counter < 5) {
+  		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_1;
+  		Rooms.update({_id: docId}, {$set: { line_3 : tempText + " " + inpText}});
+  		count = Rooms.findOne({title: "Room 1"}).haiku.line_3_counter;
+  		count++;
+  		Rooms.update({_id: docId}, {$set: {line_3_counter: count}});
+  	} else
+  		return;
+  	
   }
 });
