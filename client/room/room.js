@@ -3,6 +3,10 @@ Session.set("roomLine1", "Line 1");
 Session.set("roomLine2", "Line 2");
 Session.set("roomLine3", "Line 3");
 
+Session.set("roomLine1count", 0);
+Session.set("roomLine2count", 0);
+Session.set("roomLine3count", 0);
+
 Template.room.helpers({
   'rooms': function () {
     return Rooms.find({});
@@ -49,8 +53,20 @@ Template.room.events({
   		alert("Only one word please");
   		return;
   	}
-  	alert(line1.concat(" " + inpText));
-  	var tempText = Session.get("roomLine1");
-  	Session.set("roomLine1", tempText + " " + inpText);
+  	var curLine;
+  	if (Session.get("roomLine1count") < 5)
+  		curLine = "roomLine1";
+  	else if (Session.get("roomLine2count") < 7)
+  		curLine = "roomLine2";
+  	else if (Session.get("roomLine3count") < 5)
+  		curLine = "roomLine3";
+  	else
+  		return;
+
+  	var tempText = Session.get(curLine);
+  	Session.set(curLine, tempText + " " + inpText);
+  	var count = Session.get(curLine + "count");
+  	count++;
+  	Session.set(curLine + "count", count);
   }
 });
