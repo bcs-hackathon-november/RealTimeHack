@@ -10,8 +10,8 @@
 // }
 
 
-Template.haikuTemplate.helpers({
-	haikus: function () {
-	  return Haikus.find({});
-	}
-});
+// Template.haikuTemplate.helpers({
+// 	haikus: function () {
+// 	  return Haikus.find({});
+// 	}
+// });

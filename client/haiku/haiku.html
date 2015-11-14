@@ -9,16 +9,17 @@
     </header>
  
     <ul class="list-unstyled">
-      {{#each haikus}}
+      <!-- {{#each data}} -->
         {{> haiku}}
-      {{/each}}
+      <!-- {{/each}} -->
     </ul>
+  </div>
+  <div>
+  <button id='back'><a href="/"> Back </a></button>
   </div>
 </template>
 
 <template name="haiku">
-
-
   <li>{{line_1}}</li>
   <li>{{line_2}}</li>
   <li>{{line_3}}</li>
