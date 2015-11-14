@@ -1,5 +1,5 @@
 // This code only runs on the client
-Template.rooms.helpers({
+Template.room.helpers({
   rooms: function () {
     return Rooms.find({});
   }
