@@ -1,9 +1,13 @@
 var username;
 
-Template.exampleTemplate.helpers({
+Template.redirToMain.helpers({
     'getName': function () {
         username = Meteor.user().profile.name;
         return username;
+    },
+    'gotoMain': function () {
+        //console.log("LOGIN.JS");
+        return Router.go('/');
     }
 });
 
@@ -20,7 +24,7 @@ Template.login.events({
 
         var usrId = UserList.insert({'name': username});
         Session.set('thisUser', usrId);
-        console.log(usrId);
+        //console.log(usrId);
 
     },
 
@@ -32,7 +36,7 @@ Template.login.events({
         });
         //TODO
         var usrToRm = Session.get('thisUser');
-        console.log(usrToRm);
+        //console.log(usrToRm);
         UserList.remove(usrToRm);
     }
 });

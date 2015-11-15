@@ -1,4 +1,16 @@
 <template name="mainTemplate">
+    <li>You are...
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}} -
+        {{currentUser.services.facebook.email}}</li>
+
+    <li>Others here:</li>
+    {{#each user}}
+        <li class="user {{chosenClass}}">User - {{name}}</li>
+    {{/each}}
+
+    <button id="logout">Logout</button>
+
     <h1> Rooms </h1>
     <ul>
       {{#each rooms}}
