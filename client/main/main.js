@@ -3,29 +3,12 @@ Template.mainTemplate.helpers({
   rooms: function () {
     return Rooms.find({});
   },
-
   haikus: function () {
     return Haikus.find({}).fetch();
-  },
-  
-  user: function () {
-    return UserList.find({});
-  },
-
-  'chosenClass': function() {
-    var userId = this._id;
-    var chosenUser = Session.get('chosenUser');
-    if (userId == chosenUser) {
-      return "selected";
-    }
   }
 });
 
 Template.mainTemplate.events({
-  'click .user': function() {
-    var userId = this._id;
-    Session.set('chosenUser', userId);
-  },
   'click #logout': function (event) {
     Meteor.logout(function (err) {
       if (err) {
@@ -39,3 +22,27 @@ Template.mainTemplate.events({
     //console.log("LOGGED OUT");
   }
 });
+
+
+
+Template.othersHere.helpers({
+  'chosenClass': function() {
+    var userId = this._id;
+    var chosenUser = Session.get('chosenUser');
+    if (userId == chosenUser) {
+      return "selected";
+    }
+  },
+  user: function () {
+    return UserList.find({});
+  }
+});
+
+Template.othersHere.events({
+  'click .user': function() {
+    var userId = this._id;
+    Session.set('chosenUser', userId);
+  }
+});
+
+
