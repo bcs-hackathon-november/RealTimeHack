@@ -1,35 +1,43 @@
 <template name="mainTemplate">
-    <li>You are...
-        {{currentUser.services.facebook.name}} -
-        {{currentUser.services.facebook.gender}} -
-        {{currentUser.services.facebook.email}}</li>
+    {{> youAre}}
 
-    <li>Others here:</li>
-    {{#each user}}
-        <li class="user {{chosenClass}}">User - {{name}}</li>
-    {{/each}}
+    {{> othersHere}}
 
     <button id="logout">Logout</button>
 
     <h1> Rooms </h1>
     <ul>
-      {{#each rooms}}
-        {{> roomTitle}}
-      {{/each}}
-  </ul>
+        {{#each rooms}}
+            {{> roomTitle}}
+        {{/each}}
+    </ul>
 
     <h2> Haikus </h2>
     <ul>
-      {{#each haikus}}
-        {{> haikuTitle}}
-      {{/each}}
+        {{#each haikus}}
+            {{> haikuTitle}}
+        {{/each}}
     </ul>
-  </template>
+</template>
 
-  <template name="roomTitle">
+<template name="youAre">
+    <li>You are...
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}} -
+        {{currentUser.services.facebook.email}}</li>
+</template>
+
+<template name="othersHere">
+    <li>Others here:</li>
+    {{#each user}}
+        <li class="user {{chosenClass}}">User - {{name}}</li>
+    {{/each}}
+</template>
+
+<template name="roomTitle">
     <li><a href="/room/{{_id}}">{{title}}</a></li>
-  </template>
+</template>
 
-  <template name="haikuTitle">
+<template name="haikuTitle">
     <li><a href="/haiku/{{_id}}">{{title}}</a></li>
-  </template>
+</template>
