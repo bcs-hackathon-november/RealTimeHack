@@ -23,3 +23,7 @@ iron:router
 accounts-facebook
 service-configuration
 aldeed:autoform
+
+
+npm-container
+meteorhacks:npm
