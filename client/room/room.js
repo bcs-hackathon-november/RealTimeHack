@@ -24,6 +24,17 @@ Template.room.helpers({
   }
 });
 
+function checkSyllables(word) {
+	Algorithmia.client("sim5BKo8GlnVCZlnOKRjuX6z43F1")
+           .algo("algo://WebPredict/Sylllables/0.1.0")
+           .pipe(word)
+           .then(function(output) {
+             console.log(output);
+	});
+}
+
+checkSyllables("hello");
+
 Template.room.events({
   'click #save' : function(){
   	alert("Saved!");
@@ -49,24 +60,26 @@ Template.room.events({
   	var tempText = "";
   	var count = 0;
 
+  	// Rooms.update({_id: docId}, {$set: { haiku : { line_1: tempText + " " + inpText}}});
+  	// Rooms.update({_id: docId}, {$set: { "haiku.line_1" : tempText + " " + inpText}});
   	if (Rooms.findOne({title: "Room 1"}).haiku.line_1_counter < 5) {
   		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_1;
-  		Rooms.update({_id: docId}, {$set: { line_1 : tempText + " " + inpText}});
-  		count = Rooms.findOne({title: "Room 1"}).haiku.line_1_counter;
-  		count++;
-  		Rooms.update({_id: docId}, {$set: {line_1_counter: count}});
+  		Rooms.update({_id: docId}, {$set: {"haiku.line_1" : tempText + " " + inpText}});
+  		// count = Rooms.findOne({title: "Room 1"}).haiku.line_1_counter;
+  		// count++;
+  		Rooms.update({_id: docId}, {$inc: {"haiku.line_1_counter": 1}});
   	} else if (Rooms.findOne({title: "Room 1"}).haiku.line_2_counter < 7) {
   		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_2;
-  		Rooms.update({_id: docId}, {$set: { line_2 : tempText + " " + inpText}});
-  		count = Rooms.findOne({title: "Room 1"}).haiku.line_2_counter;
-  		count++;
-  		Rooms.update({_id: docId}, {$set: {line_1_counter: count}});
-  	} else if (Rooms.findOne({title: "Room 1"}).haiku.line_3_counter < 5) {
+  		Rooms.update({_id: docId}, {$set: {"haiku.line_2" : tempText + " " + inpText}});
+  		// count = Rooms.findOne({title: "Room 1"}).haiku.line_2_counter;
+  		// count++;
+  		Rooms.update({_id: docId}, {$inc: {"haiku.line_2_counter": 1}});
+  	} else if (Rooms.findOne({title: "Room 1"}).haiku.line_3_counter < 4) {
   		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_1;
-  		Rooms.update({_id: docId}, {$set: { line_3 : tempText + " " + inpText}});
-  		count = Rooms.findOne({title: "Room 1"}).haiku.line_3_counter;
-  		count++;
-  		Rooms.update({_id: docId}, {$set: {line_3_counter: count}});
+  		Rooms.update({_id: docId}, {$set: { "haiku.line_3": tempText + " " + inpText}});
+  		// count = Rooms.findOne({title: "Room 1"}).haiku.line_3_counter;
+  		// count++;
+  		Rooms.update({_id: docId}, {$inc: {"haiku.line_3_counter": 1}});
   	} else
   		return;
   	
