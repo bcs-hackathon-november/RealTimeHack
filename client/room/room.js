@@ -74,8 +74,8 @@ Template.room.events({
   		// count = Rooms.findOne({title: "Room 1"}).haiku.line_2_counter;
   		// count++;
   		Rooms.update({_id: docId}, {$inc: {"haiku.line_2_counter": 1}});
-  	} else if (Rooms.findOne({title: "Room 1"}).haiku.line_3_counter < 4) {
-  		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_1;
+  	} else if (Rooms.findOne({title: "Room 1"}).haiku.line_3_counter < 5) {
+  		tempText = Rooms.findOne({title: "Room 1"}).haiku.line_3;
   		Rooms.update({_id: docId}, {$set: { "haiku.line_3": tempText + " " + inpText}});
   		// count = Rooms.findOne({title: "Room 1"}).haiku.line_3_counter;
   		// count++;
