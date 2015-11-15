@@ -1,7 +1,13 @@
-Template.exampleTemplate.helpers({
+var username;
+
+Template.redirToMain.helpers({
     'getName': function () {
-        var userId = Session.get('thisUser');
-        return Meteor.user().profile.name;
+        username = Meteor.user().profile.name;
+        return username;
+    },
+    'gotoMain': function () {
+        //console.log("LOGIN.JS");
+        return Router.go('/');
     }
 });
 
@@ -12,16 +18,11 @@ Template.login.events({
                 throw new Meteor.Error("Facebook login failed");
             }
         });
-        //TODO
-        //var usrName = Meteor.user().username;
 
 
+        console.log(username);
 
-        var usrName = Meteor.user().profile.name;
-
-        console.log(usrName);
-
-        var usrId = UserList.insert({'name': usrName});
+        var usrId = UserList.insert({'name': username});
         Session.set('thisUser', usrId);
         //console.log(usrId);
 

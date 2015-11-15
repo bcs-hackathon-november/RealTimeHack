@@ -3,13 +3,15 @@
         {{currentUser.services.facebook.name}} -
         {{currentUser.services.facebook.gender}} -
         {{currentUser.services.facebook.email}}
-        {{> exampleTemplate}}
+        {{> redirToMain}}
+
         <button id="logout">Logout</button>
     {{else}}
         <button id="facebook-login" class="btn btn-default"> Login with Facebook</button>
     {{/if}}
 
 </template>
-<template name="exampleTemplate">
+<template name="redirToMain">
     <li>Your username: {{getName}}</li>
+    {{gotoMain}}
 </template>
