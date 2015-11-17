@@ -34,25 +34,21 @@ Meteor.methods({
             Rooms.update({_id: docId}, {$set: {"haiku.line_1" : tempText + " " + inpText}});
             // count = Rooms.findOne({title: "Room 1"}).haiku.line_1_counter;
             // count++;
-            event.target.textInput.value = "";
             Rooms.update({_id: docId}, {$inc: {"haiku.line_1_counter": wordCount}});
           } else if (Rooms.findOne({title: "Room 1"}).haiku.line_2_counter + wordCount <= 7) {
             tempText = Rooms.findOne({title: "Room 1"}).haiku.line_2;
             Rooms.update({_id: docId}, {$set: {"haiku.line_2" : tempText + " " + inpText}});
             // count = Rooms.findOne({title: "Room 1"}).haiku.line_2_counter;
             // count++;
-            event.target.textInput.value = "";
             Rooms.update({_id: docId}, {$inc: {"haiku.line_2_counter": wordCount}});
           } else if (Rooms.findOne({title: "Room 1"}).haiku.line_3_counter + wordCount <= 5) {
             tempText = Rooms.findOne({title: "Room 1"}).haiku.line_3;
             Rooms.update({_id: docId}, {$set: { "haiku.line_3": tempText + " " + inpText}});
             // count = Rooms.findOne({title: "Room 1"}).haiku.line_3_counter;
             // count++;
-            event.target.textInput.value = "";
             Rooms.update({_id: docId}, {$inc: {"haiku.line_3_counter": wordCount}});
           } else {
             alert("Word or Haiku is too long!");
-            event.target.textInput.value = "";
             return;
           }
 

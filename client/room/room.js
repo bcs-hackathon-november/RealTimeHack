@@ -62,6 +62,7 @@ Template.room.events({
   		return;
   	}
 
-    Meteor.call('inputWord', inpText); 	
+    Meteor.call('inputWord', inpText); 
+    event.target.textInput.value = "";	
   }
 });
