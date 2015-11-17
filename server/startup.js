@@ -5,9 +5,9 @@ Meteor.startup(function () {
 			title: "Room 1",
 			haiku: {
 				title: "Title Test 1",
-				line_1: "",
-				line_2: "",
-				line_3: "",
+				line_1: "Line 1: ",
+				line_2: "Line 2: ",
+				line_3: "Line 3: ",
 				line_1_counter: 0,
 				line_2_counter: 0,
 				line_3_counter: 0,

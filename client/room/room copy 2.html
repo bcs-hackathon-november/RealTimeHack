@@ -1,0 +1,19 @@
+<template name="room3">
+  <h1> Room </h1>
+  <h2> Title: {{title}} </h2>
+  <p> {{line_1}} </p>
+  <p> {{line_2}} </p>
+  <p> {{line_3}} </p>
+  
+  <form> 
+    <input type="text" id="input" name="textInput">
+  </form>
+
+  <h2> Users </h2>
+    {{> othersHere}}
+  {{#each users}}
+  {{user}}
+  {{/each}}
+  <button id='save'> Save </button>
+  <button id='back'><a href="/"> Back </a></button>
+</template>
